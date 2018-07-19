@@ -1,7 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+@filter = ['Spam', 'Normal', 'Important']
+@category = ['Main', 'Social', 'Promo']
+
+50.times do 
+    Email.create(
+        header: Faker::FamousLastWords.last_words, 
+        body: Faker::BackToTheFuture.quote,
+        sender: Faker::Internet.email,
+        category: @category.sample,
+        filter: @filter.sample,
+        time: Faker::Date.backward(14),
+        user_id: 1
+    )
+end
+
+p "Seeded #{Email.count} emails"

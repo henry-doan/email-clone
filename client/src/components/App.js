@@ -11,6 +11,7 @@ import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import EmailList from './emails/EmailList';
 import Dashboard from './emails/Dashboard';
+import EmailForm from './emails/EmailForm';
 
 class App extends Component {
   render() {
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path='/' component={Home} />
             <ProtectedRoute exact path='/dash' component={Dashboard} />
             <ProtectedRoute exact path='/emails' component={EmailList} />
+            <ProtectedRoute exact path='/form' component={EmailForm} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />
             <Route component={NoMatch} />

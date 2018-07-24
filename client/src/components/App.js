@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
 import EmailList from './emails/EmailList';
+import Dashboard from './emails/Dashboard';
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
         <FetchUser>
           <Switch>
             <Route exact path='/' component={Home} />
+            <ProtectedRoute exact path='/dash' component={Dashboard} />
             <ProtectedRoute exact path='/emails' component={EmailList} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />

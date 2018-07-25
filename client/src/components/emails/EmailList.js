@@ -5,13 +5,12 @@ import { getEmails } from '../../reducers/email';
 import Email from './Email';
 
 class EmailList extends Component {
-  state = { loaded: false, data: []}
+  state = { loaded: false }
 
   setLoaded = () => this.setState ({ loaded: true });
 
   componentDidMount() {
     this.props.dispatch(getEmails(this.setLoaded));
-    this.setState({ data: this.props.emails })
   }
 
   render() {

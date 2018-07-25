@@ -4,7 +4,7 @@ import { setFlash } from './flash';
 import { setHeaders } from './headers';
 
 const GET_EMAIL = 'GET_EMAIL';
-// const ADD_EMAIL = 'ADD_EMAIL';
+const ADD_EMAIL = 'ADD_EMAIL';
 
 export const getEmails = (cb) => {
   return (dispatch) => {
@@ -24,11 +24,26 @@ export const getEmails = (cb) => {
   }
 }
 
+export const addEmail = (email, history) => {
+  return (dispatch) => {
+    axios.post('/api/emails', email)
+      .then(({ data, headers }) => {
+        dispatch({ type: ADD_EMAIL, email: data, headers });
+        history.push('/dash')
+      })
+      .catch(err => {
+        const message = err.response.data.errors;
+        dispatch(setHeaders(err.headers));
+        dispatch(setFlash(message, 'red'));
+      })
+  }
+}
+
 export default (state = {}, action) => {
 	switch (action.type) {
 		case GET_EMAIL:
 			return action.emails;
-		case 'ADD_EMAIL':
+		case ADD_EMAIL:
       return [action.email, ...state];
 		default:
 			return state;

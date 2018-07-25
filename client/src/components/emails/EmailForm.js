@@ -2,10 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Form, Segment, Container, Dropdown, Header } from 'semantic-ui-react';
 import { categories } from './categories';
+import { addEmail } from '../../reducers/email';
 
 class EmailForm extends Component {
-  state = { header: '', body: '', sender: '', category: '', filter: 'Normal', time: '', user_id: 0 }
-
+  defaults = { header: '', body: '', sender: '', category: '', filter: 'Normal', time: '', user_id: 0 }
+  state = { ...this.defaults };
+  
+  componentDidMount() {
+    const today = new Date()
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    this.setState({ user_id: this.props.user.id, time: date })
+  }
+  
   handleChange = (e, data) => {
     const { name, value } = data;
     this.setState({ [name]: value });
@@ -13,18 +21,15 @@ class EmailForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { type, dispatch, user } = this.props;
-    const today = new Date()
-    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    this.setState({ time: date, user_id: user.id })
-    const { header, body, sender, category, filter, time, user_id } = this.state;
-    // dispatch(addProduct(this.state));
+    const { type, dispatch, history } = this.props;
+    // const { header, body, sender, category, filter, time, user_id } = this.state;
+    dispatch(addEmail(this.state, history));
     this.setState(this.defaults);
   }
 
   render() {
     const { header, body, sender, category} = this.state;
-
+   
     return(
       <Container>
         <br/>

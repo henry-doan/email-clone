@@ -4,11 +4,11 @@ class Api::EmailsController < ApplicationController
   end
 
   def create
-    @email = Email.create(email_params)
-    if @email.save
-      render json: @email
+    email = Email.create(email_params)
+    if email.save
+      render json: email
     else
-      render json: { errors: @email.errors } 
+      render json: { errors: email.errors } 
     end
   end
 
@@ -28,6 +28,6 @@ class Api::EmailsController < ApplicationController
   private 
 
   def email_params
-    params.require(:email).permit(:header, :body, :sender, :category, :filter, :time)
+    params.require(:email).permit(:header, :body, :sender, :category, :filter, :time, :user_id)
   end
 end

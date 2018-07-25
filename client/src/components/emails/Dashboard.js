@@ -11,7 +11,7 @@ class Dashboard extends Component {
         <Grid.Column>
           <Segment inverted>
             <Link to="/form">
-              <Button inverted>Create</Button>
+              <Button inverted >Create</Button>
             </Link>
           </Segment>
         </Grid.Column>

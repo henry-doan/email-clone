@@ -1,0 +1,10 @@
+.emailHeads {
+  max-width: 100%; 
+  height: auto;
+  color:#fff!important;
+}
+
+.emailHeads:hover {
+  text-decoration: underline;
+  color: white;
+}

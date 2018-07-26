@@ -9,9 +9,9 @@ import Home from './Home';
 import ProtectedRoute from './ProtectedRoute';
 import AuthRoute from './AuthRoute';
 import FetchUser from './FetchUser';
-import EmailList from './emails/EmailList';
 import Dashboard from './emails/Dashboard';
 import EmailForm from './emails/EmailForm';
+import EmailView from './emails/EmailView';
 
 class App extends Component {
   render() {
@@ -23,7 +23,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Home} />
             <ProtectedRoute exact path='/dash' component={Dashboard} />
-            <ProtectedRoute exact path='/emails' component={EmailList} />
+            <ProtectedRoute exact path='/emails/:id' component={EmailView} />
             <ProtectedRoute exact path='/form' component={EmailForm} />
             <AuthRoute exact path='/login' component={Login} />
             <AuthRoute exact path='/register' component={Register} />

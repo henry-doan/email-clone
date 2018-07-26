@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimmer, Loader, Table, Container, Button } from 'semantic-ui-react';
+import { Dimmer, Loader, Table} from 'semantic-ui-react';
 import { getEmails } from '../../reducers/email';
 import Email from './Email';
 
@@ -19,8 +19,8 @@ class EmailList extends Component {
       return(
         <Table inverted selectable>
           <Table.Body>
-            {emails.map( e => 
-              <Email key={e.id} header={e.header} body={e.body} sender={e.sender} category={e.category} filter={e.filter} time={e.time} user_id={e.user_id}  />
+            {emails.map( (e) => 
+              <Email key={e.id} email={{...e}} />
             )}
           </Table.Body>
         </Table>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Dimmer, Loader, Table, Container } from 'semantic-ui-react';
+import { Dimmer, Loader, Table, Container, Button } from 'semantic-ui-react';
 import { getEmails } from '../../reducers/email';
 import Email from './Email';
 

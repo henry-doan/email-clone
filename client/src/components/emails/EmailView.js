@@ -1,10 +1,32 @@
 import React, { Component } from 'react';
-import { Segment, Container, Divider, Header, Grid, Button, Icon } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { 
+  Segment, 
+  Container, 
+  Divider, 
+  Header, 
+  Grid, 
+  Button, 
+  Icon,
+  Confirm 
+} from 'semantic-ui-react';
+import { deleteEmail } from '../../reducers/email';
 
 class EmailView extends Component {
+  state = { open: false }
+
+  show = () => this.setState({ open: true })
+  
+  handleClose = () => this.setState({ open: false })
+  
+  handleConfirm = (id) => {
+    const { dispatch, history } = this.props;
+    dispatch(deleteEmail(id, history));
+    this.setState({ open: false });
+  }
 
   render() {
-    const { header, sender, time, body, filter, category } = this.props.location.state;
+    const { id, header, sender, time, body, filter, category } = this.props.location.state;
 
     return(
       <Container>
@@ -38,16 +60,24 @@ class EmailView extends Component {
                 <Icon name='edit' />
               </Button.Content>
             </Button> 
-            <Button animated='vertical' compact floated='right' color='red'>
+            <Button animated='vertical' compact floated='right' color='red' onClick={this.show}>
               <Button.Content hidden>Delete</Button.Content>
               <Button.Content visible>
                 <Icon name='delete' />
               </Button.Content>
             </Button>
+            <Confirm
+              open={this.state.open}
+              cancelButton='Never mind'
+              confirmButton="Let it Burn 🔥"
+              header="You Are About To Obliterate This Email !!!"
+              onCancel={this.handleClose}
+              onConfirm={() => this.handleConfirm(id)}
+            />
         </Segment>  
       </Container> 
     )
   }
 }
 
-export default EmailView;
+export default connect()(EmailView);

@@ -22,13 +22,12 @@ class EmailForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { type, dispatch, history } = this.props;
-    // const { header, body, sender, category, filter, time, user_id } = this.state;
     dispatch(addEmail(this.state, history));
     this.setState(this.defaults);
   }
 
   render() {
-    const { header, body, sender, category} = this.state;
+    const { header, body, sender} = this.state;
    
     return(
       <Container>

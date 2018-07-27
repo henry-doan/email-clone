@@ -13,6 +13,7 @@ class Api::EmailsController < ApplicationController
   end
 
   def edit
+    @email = Email.find(params[:id])
     if @email.update(email_params)
       render json: @email
     else
@@ -20,7 +21,8 @@ class Api::EmailsController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    @email = Email.find(params[:id])
     @email.destroy
     render json: { message: 'email deleted' }
   end

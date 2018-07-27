@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Container, Divider, Header, Grid } from 'semantic-ui-react';
+import { Segment, Container, Divider, Header, Grid, Button, Icon } from 'semantic-ui-react';
 
 class EmailView extends Component {
 
@@ -31,6 +31,19 @@ class EmailView extends Component {
           </Grid.Row>
           </Grid>
           <Segment padded='very'>{body}</Segment>
+          <Divider />
+            <Button animated='vertical' compact color='yellow' >
+              <Button.Content hidden>Edit</Button.Content>
+              <Button.Content visible>
+                <Icon name='edit' />
+              </Button.Content>
+            </Button> 
+            <Button animated='vertical' compact floated='right' color='red'>
+              <Button.Content hidden>Delete</Button.Content>
+              <Button.Content visible>
+                <Icon name='delete' />
+              </Button.Content>
+            </Button>
         </Segment>  
       </Container> 
     )
